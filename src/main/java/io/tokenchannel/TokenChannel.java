@@ -185,7 +185,7 @@
 
         private HttpRequest.Builder buildDefaultHttpRequest(URI uri) {
             return HttpRequest.newBuilder()
-                    .timeout(Duration.ofSeconds(30L))
+                    .timeout(Duration.ofSeconds(properties.getTimeoutInSeconds()))
                     .header("X-Api-Key", this.properties.getApiKey())
                     .header("User-Agent", "TokenChannel/Java11")
                     .header("Accept", "application/json; utf-8")
