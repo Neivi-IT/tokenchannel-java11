@@ -183,6 +183,20 @@
             return response.thenApply(r -> Arrays.asList(this.processResponse(r, VoicePriceItem[].class)));
         }
 
+        /**
+         * Retrieves the Whatsapp pricing list for supported countries
+         *
+         * @throws QuotaExceededException whether QPS o QPM have been exceeded
+         */
+        public CompletableFuture<List<WhatsappPriceItem>> getWhatsappPrices() {
+
+            final HttpRequest httpRequest =
+                    this.buildDefaultHttpRequest(URI.create(String.format("%s/pricing/whatsapp", TOKENCHANNEL_BASE_URI)))
+                            .GET().build();
+            CompletableFuture<HttpResponse<String>> response = client.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString());
+            return response.thenApply(r -> Arrays.asList(this.processResponse(r, WhatsappPriceItem[].class)));
+        }
+
         private HttpRequest.Builder buildDefaultHttpRequest(URI uri) {
             return HttpRequest.newBuilder()
                     .timeout(Duration.ofSeconds(properties.getTimeoutInSeconds()))
