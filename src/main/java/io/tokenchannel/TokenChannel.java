@@ -17,9 +17,7 @@
     import com.google.gson.Gson;
     import io.tokenchannel.exceptions.*;
 
-    import java.io.IOException;
     import java.io.UnsupportedEncodingException;
-    import java.net.HttpURLConnection;
     import java.net.URI;
     import java.net.URLEncoder;
     import java.net.http.HttpClient;
@@ -40,9 +38,9 @@
         private final TokenChannelProperties properties;
         private final Gson gson;
 
-        public TokenChannel(TokenChannelProperties properties, Gson gson) {
+        public TokenChannel(TokenChannelProperties properties) {
             this.properties = properties;
-            this.gson = gson;
+            this.gson = new Gson();
         }
 
         /**
